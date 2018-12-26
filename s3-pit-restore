@@ -300,8 +300,8 @@ def do_restore():
     page_iterator = paginator.paginate(Bucket=args.bucket, Prefix=args.prefix)
     for page in page_iterator:
         if not "Versions" in page:
-            print("No versions matching criteria, exiting ...", file=sys.stderr)
-            sys.exit(1)
+            print("No versions matching criteria, continuing...", file=sys.stderr)
+            continue
         versions = page["Versions"]
         deletemarkers = page.get("DeleteMarkers", [])
         dmarker = {"Key":""}
